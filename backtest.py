@@ -12,17 +12,6 @@ def download_data(ticker, start_date, end_date):
     data = yf.download(ticker, start=start_date, end=end_date)
     return data
 
-if __name__ == '__main__':
-    # Defining real variables
-    TICKER = 'SPY'
-    START = '2020-01-01'
-    END = '2026-01-01'
-
-    # Calling the function and saving to df
-    df = download_data(TICKER, START, END)
-
-    # Printing the first 5 rows of the dataframe to verify data
-    print(df.head())
 
 def calculate_returns(data):
     """
@@ -38,5 +27,21 @@ def calculate_returns(data):
     # Overnight: Buy close of previous day, sell open of current day
     #.shift(1) grabs close price from row above (previous day)
     df['Overnight_Return'] = (df['Open'] - df['Close'].shift(1)) / df['Close'].shift(1)
-    df = drop.na()
+    df = df.dropna()
     return df
+
+if __name__ == '__main__':
+    # Defining real variables
+    TICKER = 'SPY'
+    START = '2020-01-01'
+    END = '2026-01-01'
+
+    # Fetching raw data
+    raw_data = download_data(TICKER, START, END)
+
+    # Calculating returns
+    df = calculate_returns(raw_data)
+
+    # Print new columns to verify math worked
+    print(df[['Open', 'Close', 'Intraday_Return', 'Overnight_Return']].head())
+    
