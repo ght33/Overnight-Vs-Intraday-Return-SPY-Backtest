@@ -4,7 +4,7 @@ This is an empirical analysis aimed to explore whether historical equity risk pr
 # Progress
 1. Data Acqisition - Data ingestion engine built using python with yfinance API to pull OHLCV metrics.
 
-2. Return Stream Computation
+2. Return Stream Computation - Implemented pandas logic to isolate daily Intraday and Overnight return streams. 
 3. Data viz
 
 

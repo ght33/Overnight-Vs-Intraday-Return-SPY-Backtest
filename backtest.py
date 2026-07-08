@@ -1,5 +1,7 @@
 import yfinance as yf
 import pandas as pd 
+import matplotlib.pyplot as plt
+
 
 def download_data(ticker, start_date, end_date):
     """
@@ -30,6 +32,7 @@ def calculate_returns(data):
     df = df.dropna()
     return df
 
+
 if __name__ == '__main__':
     # Defining real variables
     TICKER = 'SPY'
@@ -45,3 +48,5 @@ if __name__ == '__main__':
     # Print new columns to verify math worked
     print(df[['Open', 'Close', 'Intraday_Return', 'Overnight_Return']].head())
     
+lots the equity curves.
+    """
