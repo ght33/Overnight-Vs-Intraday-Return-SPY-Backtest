@@ -32,6 +32,34 @@ def calculate_returns(data):
     df = df.dropna()
     return df
 
+def plot_results(df):
+    """
+    Computing cumulative compunding returns and plotting equity curves.
+    """
+    # 1. Calculate compounding returns starting from $1
+    df['Intraday_Equity'] = (1 + df['Intraday_Return']).cumprod()
+    df['Overnight_Equity'] = (1 + df['Overnight_Return']).cumprod()
+
+    # 2. Initializing plot canvas
+    plt.figure(figsize=(12, 6))
+
+    # 3. Plotting both strategies lines
+    plt.plot(df.index, df['Intraday_Equity'], label='Intraday Strategy (Buy Open, Sell Close)', color = 'blue', lw=1.5)
+    plt.plot(df.index, df['Overnight_Equity'], label='Overnight Strategy (Buy Close, Sell Open)', color = 'orange', lw=1.5)
+
+    #4 Styling
+    plt.title('SPY Performance: Intraday Vs Overnight Compunding from 2020-2026', fontsize=14, fontweight='bold')
+    plt.xlabel('Date', fontsize=12)
+    plt.ylabel('Growth of $1 Investment', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.legend(fontsize=11)
+
+    #5 Displaying chart
+    plt.tight_layout()
+    print('Generating plot... (Close the chart window to return to terminal)')
+    plt.savefig('spy_performance.png')
+
+
 
 if __name__ == '__main__':
     # Defining real variables
@@ -45,8 +73,6 @@ if __name__ == '__main__':
     # Calculating returns
     df = calculate_returns(raw_data)
 
-    # Print new columns to verify math worked
-    print(df[['Open', 'Close', 'Intraday_Return', 'Overnight_Return']].head())
+    # Calling visualization function
+    plot_results(df)
     
-lots the equity curves.
-    """
