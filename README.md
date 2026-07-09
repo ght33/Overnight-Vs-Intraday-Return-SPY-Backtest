@@ -6,7 +6,11 @@ This is an empirical analysis aimed to explore whether historical equity risk pr
 
 2. Return Stream Computation - Implemented pandas logic to isolate daily Intraday and Overnight return streams. 
 
-3. Data viz - Generated performaace visualization using matplotlib to graph compounding equity curves.
+3. Data viz - Generated performace visualization using matplotlib to graph compounding equity curves.
+
+4. Statistical Validation - Implement two-sample t-test to evaluate the p-value of overnight strat.
+
+5. Out of sample test
 
 
 ### Prerequisites
