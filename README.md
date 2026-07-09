@@ -10,7 +10,7 @@ This is an empirical analysis aimed to explore whether historical equity risk pr
 
 4. Statistical Validation - Implement two-sample t-test to evaluate the p-value of overnight strat.
 
-5. Out of sample test
+5. Out of sample test - Backtesting the same strat against NQ (QQQ) OHLCV metrics to see if the same results apply across indexes.
 
 
 ### Prerequisites
