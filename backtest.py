@@ -57,7 +57,7 @@ def plot_results(df):
     #5 Displaying chart
     plt.tight_layout()
     print('Generating plot... (Close the chart window to return to terminal)')
-    plt.savefig('spy_performance.png')
+    plt.savefig('qqq_performance.png')
 
 
 
@@ -65,7 +65,7 @@ def plot_results(df):
 
 if __name__ == '__main__':
     # Defining real variables
-    TICKER = 'SPY'
+    TICKER = 'QQQ'
     START = '2020-01-01'
     END = '2026-01-01'
 
