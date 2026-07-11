@@ -26,7 +26,7 @@ Result: Not statistically significant, the overnight difference may be due to ma
 
 ### Prerequisites
 This project requires Python  3 and the following third-party libraries
-pip install yfinance pandas matplotlib scipy 
+pip install yfinance pandas matplotlib scipy streamlit
 
 ### Usage
 Execute the backtest directly from the terminal:
