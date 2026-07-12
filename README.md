@@ -12,6 +12,7 @@ This is an empirical analysis aimed to explore whether historical equity risk pr
 
 5. Out of sample test - Backtesting the same strat against NQ (QQQ) OHLCV metrics to see if the same results apply across indexes.
 
+6. Dashboard - Built responsive web app using StreamLit to transition static file scripts into a dynamic interface. Integrated real time parameter configuration.
 
 ### Findings
 SPY: 
