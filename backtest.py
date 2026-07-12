@@ -75,21 +75,21 @@ if __name__ == '__main__':
     # Calculating returns
     df = calculate_returns(raw_data)
 
-#Statistical Validation
-print('\n---Running Statistical Validation---')
-# Dropping NaN values
-overnight_clean = df['Overnight_Return'].dropna()
-intraday_clean = df['Intraday_Return'].dropna()
+    #Statistical Validation
+    print('\n---Running Statistical Validation---')
+    # Dropping NaN values
+    overnight_clean = df['Overnight_Return'].dropna()
+    intraday_clean = df['Intraday_Return'].dropna()
 
-#Performing two-sample t-test (unequal variances)
-t_stat, p_val = stats.ttest_ind(overnight_clean, intraday_clean, equal_var=False)
-print(f"T-statistic: {t_stat:.4f}")
-print(f"P-value: {p_val:.4f}")
+    #Performing two-sample t-test (unequal variances)
+    t_stat, p_val = stats.ttest_ind(overnight_clean, intraday_clean, equal_var=False)
+    print(f"T-statistic: {t_stat:.4f}")
+    print(f"P-value: {p_val:.4f}")
 
-if p_val < 0.05:
-    print("Result: Statistically significant, the overnight edge is likely to be a real phenomenon.") 
-else:
-    print("Result: Not statistically significant, the overnight difference may be due to market noise.")
+    if p_val < 0.05:
+        print("Result: Statistically significant, the overnight edge is likely to be a real phenomenon.") 
+    else:
+        print("Result: Not statistically significant, the overnight difference may be due to market noise.")
     # Calling visualization function
     plot_results(df)
     
