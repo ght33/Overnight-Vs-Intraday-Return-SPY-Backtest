@@ -10,7 +10,7 @@ st.title('Overnight Vs Intraday Return Backtest')
 
 #Sidebar
 st.sidebar.header('Strategy Settings')
-ticker = st.sidebar.selectbox('Select Asset Ticker', ['SPY', 'QQQ'])
+ticker = st.sidebar.selectbox('Select Asset Ticker', ['SPY', 'QQQ', 'IWM', 'DIA', 'AAPL', 'MSFT', 'NVDA'])
 
 #Date Windows
 start_date = st.sidebar.date_input("Start Date", datetime.date(2020, 1, 1))
@@ -29,7 +29,7 @@ if ticker:
         #Run stat validation on date range
         overnight_clean = df['Overnight_Return'].dropna()
         intraday_clean = df['Intraday_Return'].dropna()
-        t_stat, p_val = stats.ttest_ind(overnight_clean, intraday_clean, equal_var=False)
+        t_stat, p_val = stats.ttest_rel(overnight_clean, intraday_clean)
 
         #Display real stat metrics dynamically
         st.write('### Statistical Metrics')

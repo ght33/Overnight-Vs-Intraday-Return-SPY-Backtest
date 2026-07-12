@@ -1,8 +1,8 @@
 # Overnight-Vs-Intraday-Return-SPY-Backtest
-This is an empirical analysis aimed to explore whether historical equity risk premium of the S&P 500 (SPY) is captured during overnight market closure or regular trading hours during the day. 
+This is an empirical analysis aimed to explore whether historical equity risk premium of the S&P 500 (SPY) is captured during overnight market closure or regular trading hours during the day. Ended up being a multi asset test of this same principle.
 
 # Progress
-1. Data Acqisition - Data ingestion engine built using python with yfinance API to pull OHLCV metrics.
+1. Data Acquisition - Data ingestion engine built using python with yfinance API to pull OHLCV metrics.
 
 2. Return Stream Computation - Implemented pandas logic to isolate daily Intraday and Overnight return streams. 
 
@@ -30,6 +30,20 @@ This project requires Python  3 and the following third-party libraries
 pip install yfinance pandas matplotlib scipy streamlit
 
 ### Usage
+
+## How to Run Backtest
+Backtest Script: Open 'backtest.py' and locate execution block
+```python
+if __name__ == '__main__':
+    TICKER = 'QQQ' #Change this to 'SPY' or 'QQQ' or ANY asset ticker
+```
 Execute the backtest directly from the terminal:
-'''bash
+```bash
 python backtest.py
+```
+## How to Run Interactive Dashboard
+'app.py':  Includes interactive web interface
+Run Streamlit application from terminal
+```bash
+streamlit run app.py
+```

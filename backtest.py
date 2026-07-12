@@ -11,7 +11,7 @@ def download_data(ticker, start_date, end_date):
     movement
     """
     print(f'Fetching historical data for {ticker} from {start_date} to {end_date}...')
-    data = yf.download(ticker, start=start_date, end=end_date)
+    data = yf.download(ticker, start=start_date, end=end_date, multi_level_index=False)
     return data
 
 
@@ -32,7 +32,7 @@ def calculate_returns(data):
     df = df.dropna()
     return df
 
-def plot_results(df):
+def plot_results(df, ticker):
     """
     Computing cumulative compunding returns and plotting equity curves.
     """
@@ -48,7 +48,7 @@ def plot_results(df):
     plt.plot(df.index, df['Overnight_Equity'], label='Overnight Strategy (Buy Close, Sell Open)', color = 'orange', lw=1.5)
 
     #4 Styling
-    plt.title('SPY Performance: Intraday Vs Overnight Compunding from 2020-2026', fontsize=14, fontweight='bold')
+    plt.title(f'{ticker.upper()} Performance: Intraday Vs Overnight Compounding from 2020-2026')
     plt.xlabel('Date', fontsize=12)
     plt.ylabel('Growth of $1 Investment', fontsize=12)
     plt.grid(True, linestyle='--', alpha=0.5)
@@ -57,7 +57,7 @@ def plot_results(df):
     #5 Displaying chart
     plt.tight_layout()
     print('Generating plot... (Close the chart window to return to terminal)')
-    plt.savefig('qqq_performance.png')
+    plt.savefig(f'{ticker.lower()}_performance.png')
 
 
 
@@ -65,7 +65,7 @@ def plot_results(df):
 
 if __name__ == '__main__':
     # Defining real variables
-    TICKER = 'QQQ'
+    TICKER = 'NVDA'
     START = '2020-01-01'
     END = '2026-01-01'
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     intraday_clean = df['Intraday_Return'].dropna()
 
     #Performing two-sample t-test (unequal variances)
-    t_stat, p_val = stats.ttest_ind(overnight_clean, intraday_clean, equal_var=False)
+    t_stat, p_val = stats.ttest_rel(overnight_clean, intraday_clean)
     print(f"T-statistic: {t_stat:.4f}")
     print(f"P-value: {p_val:.4f}")
 
@@ -91,5 +91,5 @@ if __name__ == '__main__':
     else:
         print("Result: Not statistically significant, the overnight difference may be due to market noise.")
     # Calling visualization function
-    plot_results(df)
+    plot_results(df, TICKER)
     
