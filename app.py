@@ -4,6 +4,12 @@ from scipy import stats
 
 from backtest import download_data, calculate_returns
 
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_prices(ticker, start, end):
+    """Cache downloads for an hour so repeat visits don't re-hit Yahoo (it rate-limits shared cloud servers)."""
+    return download_data(ticker, start, end)
+
 #Web page layout
 st.set_page_config(page_title='Overnight vs Intraday Backtest', layout='wide')
 st.title('Overnight Vs Intraday Return Backtest')
@@ -20,7 +26,7 @@ end_date = st.sidebar.date_input('End Date', datetime.date(2026, 6, 1))
 if ticker:
     try:
         #Fetch and calculating data with sidebars
-        raw_data = download_data(ticker, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+        raw_data = load_prices(ticker, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
         df = calculate_returns(raw_data)
 
         st.write(f'### Analyzing {ticker} from {start_date} to {end_date}')

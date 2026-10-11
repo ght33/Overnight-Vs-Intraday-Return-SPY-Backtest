@@ -81,7 +81,7 @@ if __name__ == '__main__':
     overnight_clean = df['Overnight_Return'].dropna()
     intraday_clean = df['Intraday_Return'].dropna()
 
-    #Performing two-sample t-test (unequal variances)
+    #Paired t-test: each day's overnight and intraday returns are a matched pair
     t_stat, p_val = stats.ttest_rel(overnight_clean, intraday_clean)
     print(f"T-statistic: {t_stat:.4f}")
     print(f"P-value: {p_val:.4f}")
